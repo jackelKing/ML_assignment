@@ -82,7 +82,6 @@ if st.button("Predict Knowledge Level"):
 
     st.success(f"Predicted Knowledge Level: **{pred_label}**")
 
-
 # -----------------------------
 # Recommendation Section
 # -----------------------------
@@ -94,11 +93,37 @@ if st.button("Get Recommendations"):
 
     if len(recs) == 0:
         st.warning("No recommendations available")
-    else:
-        st.write("Top Recommended Resources:")
-        for i, r in enumerate(recs, 1):
-            st.write(f"{i}. Resource ID: {r}")
 
+    else:
+        # Load metadata ONCE
+        vle_df = pd.read_csv("./data/raw/vle.csv")
+
+        # FIX datatype issue (IMPORTANT)
+        vle_df["id_site"] = vle_df["id_site"].astype(int)
+
+        st.write("Top Recommended Resources:")
+
+        for i, r in enumerate(recs, 1):
+
+            r = int(r)  # ensure match
+
+            resource_info = vle_df[vle_df["id_site"] == r]
+
+            if not resource_info.empty:
+
+                name = resource_info.iloc[0]["activity_type"]
+                module = resource_info.iloc[0]["code_module"]
+
+                st.markdown(
+                    f"""
+                    **{i}. 📘 {name}**  
+                    • Resource ID: {r}  
+                    • Module: {module}
+                    """
+                )
+
+            else:
+                st.write(f"{i}. Resource ID: {r}")
 
 # -----------------------------
 # Student Info View
