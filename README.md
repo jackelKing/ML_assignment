@@ -32,33 +32,6 @@ This project is designed as a production-ready academic and portfolio system, de
 
 ---
 
-## Project Structure
-
-Intelligent-Learning-Recommendation-System/
-│
-├── data/
-│ ├── raw/
-│ │ └── vle.csv
-│ └── processed/
-│ └── feature_engineered_data.csv
-│
-├── models_saved/
-│ ├── xgboost_model.pkl
-│ └── svd_model.pkl
-│
-├── src/
-│ ├── app/
-│ │ └── app.py
-│ ├── recommender/
-│ │ └── hybrid_engine.py
-│ └── ...
-│
-├── requirements.txt
-└── README.md
-
-
----
-
 ## Machine Learning Pipeline
 
 ### Data Processing
