@@ -1,9 +1,6 @@
+streamlit
 pandas
 numpy
 scikit-learn
 xgboost
 joblib
-streamlit
-fastapi
-uvicorn
-shap
